@@ -1,4 +1,5 @@
-﻿using SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.Models;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,26 +18,18 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
     /// </summary>
     public partial class MainWindow : Window
     {
+        HouseContext houseContext;
         public MainWindow()
         {
             InitializeComponent();
-            
-            using(HouseContext db = new())
-            {
-                House house = new House("Минск", "Одинцова", 18);
-                db.Houses.Add(house);
-                db.SaveChanges();
+            houseContext = new HouseContext("DafaultConnection");
+            InitDataGridHouses();
+        }
 
-            }
-
-            using(HouseContext db = new())
-            {
-                var houses = db.Houses.ToList();
-                foreach(House house in houses)
-                {
-                    MessageBox.Show(house.City);
-                }
-            }
+        private void InitDataGridHouses()
+        {
+            houseContext.Houses.Load();
+            DataGrid_Houses.DataContext = houseContext.Houses.ToList();
         }
     }
 }

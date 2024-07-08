@@ -5,8 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Адреса" Height="450" Width="800"
+        ResizeMode="NoResize">
+    <Grid Name="Grid_Main">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="1,0" EndPoint="1, 1">
+                <GradientStop Color="WhiteSmoke" Offset="0"/>
+                <GradientStop Color="Gray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <DataGrid Name="DataGrid_Houses" Grid.Row="0" Background="{Binding }"
+                  ItemsSource="{Binding}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Город"/>
+                <DataGridTextColumn Header="Улица"/>
+                <DataGridTextColumn Header="Номер дома"/>
+                <DataGridTextColumn Header="Номер квартиры"/>
+                <DataGridTextColumn Header="Наличие лифта"/>
+                <DataGridTextColumn Header="Количество этажей"/>
+                <DataGridTextColumn Header="Владелец"/>
+                <DataGridTextColumn Header="Телефон"/>
+                
+                
+            </DataGrid.Columns>
+            
+        </DataGrid>
 
+        <StackPanel Name="Stk_Buttons" Grid.Row="1" Grid.Column="0"
+                    Orientation="Horizontal">
+            <Button Name="Btn_Add" Content="Добавить" Margin="50 10 10 10">
+
+            </Button>
+            <Button Name="Btn_Select"  Content="Выбрать">
+
+            </Button>
+            <Button Name="Btn_Edit" Content="Изменить">
+
+            </Button>
+            <Button Name="Btn_Update" Content="Обновить">
+
+            </Button>
+            <Button Name="Btn_Find" Content="Найти">
+
+            </Button>
+            <Button Name="Btn_Delete" Content="Удалить">
+
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
