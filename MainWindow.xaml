@@ -19,16 +19,19 @@
             </LinearGradientBrush>
         </Grid.Background>
         <DataGrid Name="DataGrid_Houses" Grid.Row="0" Background="{Binding }"
-                  ItemsSource="{Binding}" AutoGenerateColumns="False">
+                  ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="4"
+                  CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+                  SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Город"/>
-                <DataGridTextColumn Header="Улица"/>
-                <DataGridTextColumn Header="Номер дома"/>
-                <DataGridTextColumn Header="Номер квартиры"/>
-                <DataGridTextColumn Header="Наличие лифта"/>
-                <DataGridTextColumn Header="Количество этажей"/>
-                <DataGridTextColumn Header="Владелец"/>
-                <DataGridTextColumn Header="Телефон"/>
+                <DataGridTextColumn Header="Город" Binding="{Binding City}"/>
+                <DataGridTextColumn Header="Улица" Binding="{Binding Street}"/>
+                <DataGridTextColumn Header="Номер дома" Binding="{Binding Number}"/>
+                <DataGridTextColumn Header="Номер квартиры" Binding="{Binding Flat}"/>
+                <DataGridCheckBoxColumn Header="Наличие лифта" 
+                                        Binding="{Binding HasElevator}"/>
+                <DataGridTextColumn Header="Количество этажей" Binding="{Binding Floor}"/>
+                <DataGridTextColumn Header="Владелец" Binding="{Binding Owner}"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Tel}"/>
                 
                 
             </DataGrid.Columns>
@@ -37,22 +40,20 @@
 
         <StackPanel Name="Stk_Buttons" Grid.Row="1" Grid.Column="0"
                     Orientation="Horizontal">
-            <Button Name="Btn_Add" Content="Добавить" Margin="50 10 10 10">
+            <Button Name="Btn_Add" Content="Добавить" Margin="90 10 10 10">
+
 
             </Button>
-            <Button Name="Btn_Select"  Content="Выбрать">
+            <Button Name="Btn_Edit" Content="Изменить" Click="Btn_Edit_Click">
 
             </Button>
-            <Button Name="Btn_Edit" Content="Изменить">
-
-            </Button>
-            <Button Name="Btn_Update" Content="Обновить">
+            <Button Name="Btn_Update" Content="Обновить" Click="Btn_Update_Click">
 
             </Button>
             <Button Name="Btn_Find" Content="Найти">
 
             </Button>
-            <Button Name="Btn_Delete" Content="Удалить">
+            <Button Name="Btn_Delete" Content="Удалить" Click="Btn_Delete_Click">
 
             </Button>
         </StackPanel>
