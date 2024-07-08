@@ -69,12 +69,13 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
             if(houseObj == null) return;
 
             House house = (House)houseObj;
-            EditHouseWindow editHouse = new EditHouseWindow(ref house);
+            EditHouseWindow editHouse = new EditHouseWindow(house);
+            editHouse.Title = "Изменение";
             var result = editHouse.ShowDialog();
             if (result == true)
             {
                 houseContext.Houses.Update(house);
-                houseContext.SaveChanges(true);
+                houseContext.SaveChanges();
                 Btn_Update_Click(sender,e);
             }
 

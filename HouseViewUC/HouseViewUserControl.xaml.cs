@@ -25,7 +25,7 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
         public House House
         {
             get => house;
-            set { ViewHouse( ref value); }
+            set { ViewHouse(value); }
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
         /// <summary>
         /// Конструктор для редактирования существующего объекта.
         /// </summary>
-        public HouseViewUserControl(ref House house)
+        public HouseViewUserControl(House house)
         {
             InitializeComponent();
             House = house;
@@ -49,10 +49,29 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
         /// <summary>
         /// Устанавливает объект House для редактирования.
         /// </summary>
-        public void ViewHouse( ref House house)
+        public void ViewHouse(House house)
         {
             this.house = house;
             Grid_Main_HouseView.DataContext = this.house;
+        }
+
+        /// <summary>
+        /// Применяет введеные значения к объекту.
+        /// Обновляет привязку
+        /// </summary>
+        public void ApplyChanges()
+        {
+            foreach(var item in Grid_HouseValues.Children)
+            {
+                if (item is TextBox tb)
+                {
+                    tb.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                }
+                if(item is CheckBox cb)
+                {
+                    cb.GetBindingExpression(CheckBox.IsCheckedProperty).UpdateSource();
+                }
+            }
         }
     }
 }

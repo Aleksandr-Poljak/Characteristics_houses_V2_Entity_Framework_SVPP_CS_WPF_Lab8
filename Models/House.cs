@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -111,6 +112,7 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.Models
 
         public string Error => throw new NotImplementedException();
         private bool notErrorValue = true;
+        [NotMapped]
         public bool NotErrorValue 
         {
             get => notErrorValue;
@@ -189,5 +191,6 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.Models
                 $"Владелец: {Owner?.ToString()}";
             return info;
         }
+
     }
 }

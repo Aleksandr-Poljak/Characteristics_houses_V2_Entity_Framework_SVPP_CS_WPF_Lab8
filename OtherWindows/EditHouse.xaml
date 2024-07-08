@@ -15,9 +15,10 @@
         <StackPanel Name="Stk_Buttons"
                     Grid.Row="1" Orientation="Horizontal">
             <Button Name="Btn_Save" Content="Сохранить" Width="100" Height="30"
-                    Margin="15 0 0 0" FontSize="12" Click="Btn_Save_Click"/>
+                    Margin="15 0 0 0" FontSize="12" Click="Btn_Save_Click"
+                    IsEnabled="{Binding houseViewUC.House.NotErrorValue}"/>
             <Button Name="Btn_Cancel" Content="Отмена" Width="100" Height="30"
-                    FontSize="12" Click="Btn_Cancel_Click"/>
+                    FontSize="12" Click="Btn_Cancel_Click" Background="DarkRed"/>
         </StackPanel>
 
 

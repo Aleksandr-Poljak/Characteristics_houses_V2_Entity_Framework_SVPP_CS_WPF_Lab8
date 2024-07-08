@@ -26,11 +26,9 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.OtherW
         public EditHouseWindow()
         {
             InitializeComponent();
-            House = houseViewUC.House;
-            Grid_EditHouse.Children.Add(houseViewUC);
         }
 
-        public EditHouseWindow( ref House house)
+        public EditHouseWindow( House house)
         {
             InitializeComponent();
             houseViewUC.House = house;
@@ -39,6 +37,7 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.OtherW
 
         private void Btn_Save_Click(object sender, RoutedEventArgs e)
         {
+            houseViewUC.ApplyChanges();
             this.DialogResult = true;
             this.Close();
         }
