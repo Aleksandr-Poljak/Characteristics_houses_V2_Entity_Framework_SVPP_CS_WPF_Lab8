@@ -6,12 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.HouseViewUC
+namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.OtherWindows
 {
-    /// <summary>
-    /// Конвертер для обработки null-значений.
-    /// </summary>
-    class NullToStringConverter : IValueConverter
+    public class NullToStringConverter: IValueConverter
     {
         public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

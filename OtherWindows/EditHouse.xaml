@@ -7,18 +7,185 @@
         mc:Ignorable="d"
         Title="House" Height="420" Width="250"
         ResizeMode="NoResize">
+    <Window.Resources>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5 10 10 10" />
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="MaxLength" Value="50"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Trigger.Setters>
+                        <Setter Property="ToolTip" 
+                        Value="{Binding RelativeSource={RelativeSource Mode=Self},
+                                Path=(Validation.Errors)[0].ErrorContent}"
+                />
+                        <Setter Property="Foreground" Value="Red"/>
+                    </Trigger.Setters>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5 5 5 5" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontFamily" Value="Cascadia Code"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <local:NullToStringConverter x:Key="NullToStringConverter"/>
+
+    </Window.Resources>
     <Grid Name="Grid_EditHouse" Background="DarkGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Name="Stk_Buttons"
-                    Grid.Row="1" Orientation="Horizontal">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!--Поля ввода-->
+        <TextBox Name="TextBox_City" Grid.Row="0" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="City" Mode="TwoWay" UpdateSourceTrigger="Explicit">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox Name="TextBox_Street" Grid.Row="1" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Street" Mode="TwoWay" UpdateSourceTrigger="Explicit">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox Name="TextBox_Number" Grid.Row="2" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Number" Mode="TwoWay" UpdateSourceTrigger="Explicit"
+                 >
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox Name="TextBox_Floor" Grid.Row="3" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Floor" Mode="TwoWay"
+                 UpdateSourceTrigger="Explicit"
+                 Converter="{StaticResource NullToStringConverter}">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox Name="TextBox_Flat" Grid.Row="4" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Flat" Mode="TwoWay" 
+                 UpdateSourceTrigger="Explicit"
+                 Converter="{StaticResource NullToStringConverter}">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <CheckBox Name="CheckBox_Elevator" Grid.Row="5" Grid.Column="1"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center">
+            <CheckBox.IsChecked>
+                <Binding Path="HasElevator" Mode="TwoWay" 
+                 UpdateSourceTrigger="Explicit">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </CheckBox.IsChecked>
+        </CheckBox>
+
+        <TextBox Name="TextBox_Owner" Grid.Row="6" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Owner" Mode="TwoWay"
+                 UpdateSourceTrigger="Explicit" 
+                 Converter="{StaticResource NullToStringConverter}">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox Name="TextBox_Tel" Grid.Row="7" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Tel" Mode="TwoWay"
+                 UpdateSourceTrigger="Explicit"
+                 Converter="{StaticResource NullToStringConverter}">
+                    <Binding.ValidationRules>
+                        <DataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <!--Подписи-->
+        <TextBlock Name="TextBlock_City" Grid.Row="0" Grid.Column="0" Text="Город(*):"/>
+        
+        <TextBlock Name="TextBlock_Street" Grid.Row="1" Grid.Column="0" Text="Улица(*):"/>
+        
+        <TextBlock Name="TextBlock_Number" Grid.Row="2" Grid.Column="0">
+            Номер
+            <LineBreak/>
+            дома(*):
+        </TextBlock>
+        
+        <TextBlock Name="TextBlock_Floor" Grid.Row="3" Grid.Column="0" Text="Этажей:"/>
+        
+        <TextBlock Name="TextBlock_Flat" Grid.Row="4" Grid.Column="0" 
+           Text="Номер квартиры:"/>
+        
+        <TextBlock Name="TextBlock_Elevator" Grid.Row="5" Grid.Column="0" 
+           Text="Лифт:"/>
+        
+        <TextBlock Name="TextBlock_Owner" Grid.Row="6" Grid.Column="0"
+           Text="Владелец:"/>
+        
+        <TextBlock Name="TextBlock_Tel" Grid.Row="7" Grid.Column="0" Text="Телефон:"/>
+
+
+        <StackPanel Name="Stk_Buttons" Grid.Row="10" Grid.ColumnSpan="2"
+                    Orientation="Horizontal">
             <Button Name="Btn_Save" Content="Сохранить" Width="100" Height="30"
                     Margin="15 0 0 0" FontSize="12" Click="Btn_Save_Click"
-                    IsEnabled="{Binding houseViewUC.House.NotErrorValue}"/>
+                    />
             <Button Name="Btn_Cancel" Content="Отмена" Width="100" Height="30"
-                    FontSize="12" Click="Btn_Cancel_Click" Background="DarkRed"/>
+                    FontSize="12" Click="Btn_Cancel_Click" Background="DarkRed"
+                    Margin="15 0 0 0"/>
         </StackPanel>
 
 

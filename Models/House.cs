@@ -111,21 +111,7 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.Models
         }
 
         public string Error => throw new NotImplementedException();
-        private bool notErrorValue = true;
-        [NotMapped]
-        public bool NotErrorValue 
-        {
-            get => notErrorValue;
-            private set
-            {
-                if(value != notErrorValue)
-                {
-                    notErrorValue = value;
-                    OnPropertyChanged(nameof(NotErrorValue));
-                }
-            }
-        }
-
+        
         public string this[string columnName]
         {
             get
@@ -163,8 +149,6 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.Models
                         break;
 
                 }
-                if (error == string.Empty) NotErrorValue = true;
-                else { NotErrorValue = false; }
                 return error;
             }
         }

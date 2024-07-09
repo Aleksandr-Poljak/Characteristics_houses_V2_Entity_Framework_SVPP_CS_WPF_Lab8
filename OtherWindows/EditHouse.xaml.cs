@@ -20,7 +20,6 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.OtherW
     /// </summary>
     public partial class EditHouseWindow : Window
     {
-        HouseViewUserControl houseViewUC = new();
         public House House;
 
         public EditHouseWindow()
@@ -31,15 +30,13 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.OtherW
         public EditHouseWindow( House house)
         {
             InitializeComponent();
-            houseViewUC.House = house;
-            Grid_EditHouse.Children.Add(houseViewUC);
+            Grid_EditHouse.DataContext = house;
+
         }
 
         private void Btn_Save_Click(object sender, RoutedEventArgs e)
         {
-            houseViewUC.ApplyChanges();
-            this.DialogResult = true;
-            this.Close();
+                    
         }
 
         private void Btn_Cancel_Click(object sender, RoutedEventArgs e)
