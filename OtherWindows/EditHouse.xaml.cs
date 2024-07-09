@@ -22,20 +22,40 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.OtherW
     {
         public House House;
 
-        public EditHouseWindow()
+        public EditHouseWindow(ref House house)
         {
             InitializeComponent();
+            this.House = house; 
+            Grid_EditHouse.DataContext = this.House;
         }
-
-        public EditHouseWindow( House house)
-        {
-            InitializeComponent();
-            Grid_EditHouse.DataContext = house;
-
-        }
-
+        /// <summary>
+        /// Обработчик события нажатия кнопки Cохранить.
+        /// Сохраняет в свойствах объекта данные из полей ввода.
+        /// </summary>
         private void Btn_Save_Click(object sender, RoutedEventArgs e)
         {
+            // Флаг срабатывания правил валидации.
+            bool HasError = false;
+            // проверка корректности заполнения всех полей.
+            foreach(var item in Grid_EditHouse.Children)
+            {
+                if(item is TextBox tb)
+                {
+                    BindingExpression bindingExpression = tb.GetBindingExpression(TextBox.TextProperty);
+                    bindingExpression.UpdateSource(); // Обновление привязки.
+                    if(bindingExpression.HasError) HasError = true;
+                }
+                if(item is CheckBox cb)
+                {
+                    cb.GetBindingExpression(CheckBox.IsCheckedProperty).UpdateSource();
+                }
+            }
+            // Если все данные введены корректно.
+            if (!HasError)
+            {
+                this.DialogResult = true;
+                this.Close();
+            }
                     
         }
 

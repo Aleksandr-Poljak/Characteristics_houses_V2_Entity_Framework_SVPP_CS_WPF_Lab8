@@ -63,9 +63,26 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
             InitDataGridHouses();
         }
 
+        /// <summary>
+        /// Орбаботчик нажатия кнопки Изменить.
+        /// Открывает окно для редактирования объекта.Сохраняет объект в базе данных
+        /// после изменения.
+        /// </summary>
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-            
+            var houseObj = DataGrid_Houses.SelectedItem;
+            if (houseObj == null) return;
+
+            House house = (houseObj as House)!;
+            EditHouseWindow edithouseWindow = new EditHouseWindow(ref house) {Owner=this};
+            edithouseWindow.Title = "Изменение";
+            var result = edithouseWindow.ShowDialog();
+            if (result == true)
+            {        
+                houseContext.Houses.Update(house);               
+                houseContext.SaveChanges(true);
+                Btn_Update_Click(sender , e);             
+            }
         }
     }
 }

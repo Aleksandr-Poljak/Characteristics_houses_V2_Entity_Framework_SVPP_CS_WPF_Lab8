@@ -175,6 +175,5 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.Models
                 $"Владелец: {Owner?.ToString()}";
             return info;
         }
-
     }
 }
