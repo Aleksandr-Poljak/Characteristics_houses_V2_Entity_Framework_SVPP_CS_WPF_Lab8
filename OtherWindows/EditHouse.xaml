@@ -63,7 +63,7 @@
         <!--Поля ввода-->
         <TextBox Name="TextBox_City" Grid.Row="0" Grid.Column="1">
             <TextBox.Text>
-                <Binding Path="City" Mode="TwoWay" UpdateSourceTrigger="Explicit">
+                <Binding Path="City" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
                     </Binding.ValidationRules>
@@ -73,7 +73,7 @@
 
         <TextBox Name="TextBox_Street" Grid.Row="1" Grid.Column="1">
             <TextBox.Text>
-                <Binding Path="Street" Mode="TwoWay" UpdateSourceTrigger="Explicit">
+                <Binding Path="Street" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
                     </Binding.ValidationRules>
@@ -83,7 +83,7 @@
 
         <TextBox Name="TextBox_Number" Grid.Row="2" Grid.Column="1">
             <TextBox.Text>
-                <Binding Path="Number" Mode="TwoWay" UpdateSourceTrigger="Explicit"
+                <Binding Path="Number" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"
                  >
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -95,7 +95,7 @@
         <TextBox Name="TextBox_Floor" Grid.Row="3" Grid.Column="1">
             <TextBox.Text>
                 <Binding Path="Floor" Mode="TwoWay"
-                 UpdateSourceTrigger="Explicit"
+                 UpdateSourceTrigger="PropertyChanged"
                  Converter="{StaticResource NullToStringConverter}">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -107,7 +107,7 @@
         <TextBox Name="TextBox_Flat" Grid.Row="4" Grid.Column="1">
             <TextBox.Text>
                 <Binding Path="Flat" Mode="TwoWay" 
-                 UpdateSourceTrigger="Explicit"
+                 UpdateSourceTrigger="PropertyChanged"
                  Converter="{StaticResource NullToStringConverter}">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -121,7 +121,7 @@
           VerticalAlignment="Center">
             <CheckBox.IsChecked>
                 <Binding Path="HasElevator" Mode="TwoWay" 
-                 UpdateSourceTrigger="Explicit">
+                 UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
                     </Binding.ValidationRules>
@@ -132,7 +132,7 @@
         <TextBox Name="TextBox_Owner" Grid.Row="6" Grid.Column="1">
             <TextBox.Text>
                 <Binding Path="Owner" Mode="TwoWay"
-                 UpdateSourceTrigger="Explicit" 
+                 UpdateSourceTrigger="PropertyChanged" 
                  Converter="{StaticResource NullToStringConverter}">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>
@@ -144,7 +144,7 @@
         <TextBox Name="TextBox_Tel" Grid.Row="7" Grid.Column="1">
             <TextBox.Text>
                 <Binding Path="Tel" Mode="TwoWay"
-                 UpdateSourceTrigger="Explicit"
+                 UpdateSourceTrigger="PropertyChanged"
                  Converter="{StaticResource NullToStringConverter}">
                     <Binding.ValidationRules>
                         <DataErrorValidationRule/>

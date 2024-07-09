@@ -24,16 +24,36 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
         {
             InitializeComponent();
             houseContext = new HouseContext("DafaultConnection");
-            InitDataGridHouses();
+            Loaded += MainWindow_Loaded;
         }
+
+        /// <summary>
+        /// Обрбаботчик события загрузки окна
+        /// </summary>
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+           InitDataGridHouses();
+        }
+
         /// <summary>
         /// Инициализация DataGrid записями из базы данных
         /// </summary>
         private void InitDataGridHouses()
         {
             houseContext.Houses.Load();
-            DataGrid_Houses.DataContext = houseContext.Houses.ToList();
+            DataGrid_Houses.ItemsSource = houseContext.Houses.Local.ToBindingList();
         }
+
+        /// <summary>
+        /// Перезагружает DataGrid/
+        /// </summary>
+        private void ReloadDataGrid()
+        {
+            houseContext.Houses.Load();
+            DataGrid_Houses.ItemsSource = null;
+            DataGrid_Houses.ItemsSource = houseContext.Houses.Local.ToBindingList();
+        }
+
         /// <summary>
         /// Обработчик события нажатия кнопки Удалить.
         /// Удаляет объект из базы данных.
@@ -60,7 +80,7 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
         /// </summary>
         private void Btn_Update_Click(object sender, RoutedEventArgs e)
         {
-            InitDataGridHouses();
+            ReloadDataGrid();
         }
 
         /// <summary>
@@ -74,15 +94,16 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
             if (houseObj == null) return;
 
             House house = (houseObj as House)!;
-            EditHouseWindow edithouseWindow = new EditHouseWindow(ref house) {Owner=this};
+            EditHouseWindow edithouseWindow = new EditHouseWindow(house) {Owner=this};
             edithouseWindow.Title = "Изменение";
             var result = edithouseWindow.ShowDialog();
             if (result == true)
             {        
                 houseContext.Houses.Update(house);               
-                houseContext.SaveChanges(true);
-                Btn_Update_Click(sender , e);             
+                houseContext.SaveChanges(true);                         
             }
+            Btn_Update_Click(sender, e);
         }
+
     }
 }
