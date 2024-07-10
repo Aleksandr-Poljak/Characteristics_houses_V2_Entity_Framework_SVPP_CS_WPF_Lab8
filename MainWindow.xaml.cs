@@ -156,5 +156,14 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
                 DataGrid_Houses.ItemsSource = filteredHouses;
             }
         }
+
+        /// <summary>
+        /// Обрабочик события загрузки строк DataGrid
+        /// </summary>
+        private void dGridLoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            // Нумерация строк
+            e.Row.Header = e.Row.GetIndex() + 1;
+        }
     }
 }

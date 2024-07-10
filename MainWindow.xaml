@@ -21,9 +21,15 @@
         <DataGrid Name="DataGrid_Houses" Grid.Row="0" Background="{Binding }"
                   ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="4"
                   CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
-                  SelectionMode="Single">
+                  SelectionMode="Single" LoadingRow="dGridLoadingRow">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Город" Binding="{Binding City}"/>
+                <DataGridTextColumn Header="Город" Binding="{Binding City}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextAlignment" Value="Right"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Улица" Binding="{Binding Street}"/>
                 <DataGridTextColumn Header="Номер дома" Binding="{Binding Number}"/>
                 <DataGridTextColumn Header="Номер квартиры" Binding="{Binding Flat}"/>
