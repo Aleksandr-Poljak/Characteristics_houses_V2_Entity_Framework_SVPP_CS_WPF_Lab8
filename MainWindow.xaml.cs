@@ -123,5 +123,38 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
             }
             Btn_Update_Click(sender , e);
         }
+
+        /// <summary>
+        /// Обработчик события нажатия кнопки Найти.
+        /// Находит записи  в базе данных совпадающие с критериями поиска.
+        /// </summary>
+        private void Btn_Find_Click(object sender, RoutedEventArgs e)
+        {
+            // Запрос данных для поиска в новом окне.
+            SearchHouseWindow searchHouseWindow = new SearchHouseWindow();
+            var result = searchHouseWindow.ShowDialog();
+            if (result == true)
+            {
+                // Извлечение данных для поиска
+                // (Корректность данных проверятеся в логике окна поиска)
+                string city = searchHouseWindow.City;
+                string street = searchHouseWindow.Street;
+                int? number = searchHouseWindow.Number;
+
+                // Поиск по данным (Поиск включением данных)
+                var housesQuery = houseContext.Houses.AsQueryable();
+
+                housesQuery = housesQuery.Where(h=>h.City.Contains(city));
+                housesQuery = housesQuery.Where(h => h.Street.Contains(street));
+                if(number is not null)
+                {
+                    int num = (int)number;
+                    housesQuery = housesQuery.Where(h => h.Number==num);
+                }
+                // Отображение результатов
+                var filteredHouses = housesQuery.ToList();
+                DataGrid_Houses.ItemsSource = filteredHouses;
+            }
+        }
     }
 }

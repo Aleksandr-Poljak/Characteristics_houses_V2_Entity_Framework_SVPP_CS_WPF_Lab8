@@ -123,15 +123,12 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_.OtherW
             {
                 this.DialogResult = true;
                 this.Close();
-            }
-         
+            }     
         }
 
         /// <summary>
         /// Обработчик нажатия кнопки Отмена.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Btn_SearchCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

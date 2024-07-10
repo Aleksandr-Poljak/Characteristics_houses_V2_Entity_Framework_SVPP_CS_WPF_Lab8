@@ -50,7 +50,7 @@
             <Button Name="Btn_Update" Content="Обновить" Click="Btn_Update_Click">
 
             </Button>
-            <Button Name="Btn_Find" Content="Найти">
+            <Button Name="Btn_Find" Content="Найти" Click="Btn_Find_Click">
 
             </Button>
             <Button Name="Btn_Delete" Content="Удалить" Click="Btn_Delete_Click">
