@@ -105,5 +105,23 @@ namespace SVPP_CS_WPF_Lab8_Characteristics_houses_Db_V2_Entity_Framework_
             Btn_Update_Click(sender, e);
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки Добавить.
+        /// Открывает окно создания записи.
+        /// </summary>
+        private void Btn_Add_Click(object sender, RoutedEventArgs e)
+        {
+            House house = new();
+            EditHouseWindow editHouseWindow = new EditHouseWindow(house) { Owner=this};
+            editHouseWindow.Title = "Добавить запись";
+            var result = editHouseWindow.ShowDialog();
+            if(result == true)
+            {
+                houseContext.Houses.Add(house);
+                houseContext.SaveChanges(true);
+                MessageBox.Show("Запись добавлена","Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            Btn_Update_Click(sender , e);
+        }
     }
 }
